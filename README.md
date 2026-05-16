@@ -30,7 +30,7 @@ Windows activation equivalents:
 Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments.
 
 ```bash
-read -s -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
+read -s -p "Enter API key: " OPENAI_API_KEY
 echo
 if [ -z "${OPENAI_API_KEY// }" ]; then echo "OPENAI_API_KEY cannot be empty"; exit 1; fi
 export OPENAI_API_KEY
