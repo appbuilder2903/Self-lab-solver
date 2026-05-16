@@ -30,7 +30,8 @@ Windows activation equivalents:
 Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments.
 
 ```bash
-read -s OPENAI_API_KEY
+read -s -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
+echo
 export OPENAI_API_KEY
 ```
 
@@ -86,7 +87,9 @@ The NLP model breaks this down into:
 The system translates this into:
 1. Open Cloud Shell.
 2. Run:
-   `bq query --use_legacy_sql=false 'SELECT word, sum(wordcount) as count FROM \`bigquery-public-data.samples.shakespeare\` GROUP BY word ORDER BY count DESC LIMIT 10'`
+   ```bash
+   bq query --use_legacy_sql=false 'SELECT word, sum(wordcount) as count FROM `bigquery-public-data.samples.shakespeare` GROUP BY word ORDER BY count DESC LIMIT 10'
+   ```
 3. Execute and collect output.
 
 > "Deploy the container from 'gcr.io/cloud-samples-images/cv-api' to Cloud Run with 1000 max instances."
