@@ -11,7 +11,7 @@ Ultra-Advanced AI-Powered Automation System scaffold with:
 
 ### Prerequisites & Setup
 
-Before running the system, make sure Python and required dependencies are installed in your environment.
+Before running the system, make sure Python and required dependencies are installed in your environment. GPU support is optional, but if you want acceleration you should also have a CUDA-capable GPU with compatible CUDA drivers/toolkit installed.
 
 ### Environment Setup
 
@@ -27,7 +27,7 @@ Windows activation equivalents:
 
 ### API Key Configuration
 
-Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments.
+Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments. If you use `.env`, ensure your runtime loads it before launching the script.
 
 ```bash
 read -s -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
@@ -54,7 +54,8 @@ docker run --rm -it self-lab-solver
 
 ### Web Dashboard for Monitoring
 
-This scaffold does not include a built-in dashboard launcher by default. If you have added a dashboard module, start it with your module entrypoint (for example, `python dashboard.py`) and open the local URL shown in logs to monitor task status and runtime metrics.
+This scaffold does not include a built-in dashboard launcher by default.  
+If you have added a dashboard module, start it with your module entrypoint (for example, `python dashboard.py`) and open the local URL shown in logs to monitor task status and runtime metrics.
 
 ### Performance Optimization Tips
 
