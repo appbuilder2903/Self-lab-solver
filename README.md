@@ -68,7 +68,7 @@ If you have added a dashboard module, start it with your module entrypoint (for 
 
 ### Performance Optimization Tips
 
-- **GPU Utilization:** If you are using a CUDA-capable GPU, install CUDA to maximize
+- **GPU Utilization:** If you are using a CUDA-capable GPU, install the CUDA toolkit to maximize
   performance.
   - Linux guide: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
   - Windows guide: https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/
@@ -115,8 +115,8 @@ This becomes:
 5. Deploy.
 
 This instruction-based capability bridges the gap between pre-trained knowledge and
-new situations. It does not need to have seen the exact lab before. It only needs to
-parse and translate your instructions into the correct sequence of actions.
+new situations. The system does not need to have seen the exact lab before. The system
+only needs to parse and translate your instructions into the correct sequence of actions.
 
 ### Refined Conclusion
 
