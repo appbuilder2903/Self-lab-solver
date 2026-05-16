@@ -32,6 +32,7 @@ Export any required API keys as environment variables before execution. Do not c
 ```bash
 read -s -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
 echo
+if [ -z "${OPENAI_API_KEY// }" ]; then echo "OPENAI_API_KEY cannot be empty"; exit 1; fi
 export OPENAI_API_KEY
 ```
 
@@ -62,7 +63,7 @@ docker run --rm -it self-lab-solver
 
 ### Web Dashboard for Monitoring
 
-This scaffold does not include a built-in dashboard launcher by default.  
+This project does not include a built-in dashboard launcher by default.  
 If you have added a dashboard module, start it with your module entrypoint (for example, `python dashboard.py`) and open the local URL shown in logs to monitor task status and runtime metrics.
 
 ### Performance Optimization Tips
