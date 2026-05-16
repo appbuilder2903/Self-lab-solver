@@ -34,7 +34,7 @@ class HumanBehaviorSimulator:
 class AdvancedCaptchaSolver:
     """Ensemble orchestrator for audio, visual, and behavioral CAPTCHA interfaces."""
 
-    SIGNAL_KEY_MAP = {"audio": "audio", "visual": "image", "behavioral": "interaction"}
+    SIGNAL_KEY_MAP = {"audio": "audio", "visual": "visual", "behavioral": "interaction"}
 
     def __init__(self) -> None:
         self.audio_solver = self.init_audio_solver()
@@ -55,10 +55,12 @@ class AdvancedCaptchaSolver:
         return {"audio": 0.34, "visual": 0.46, "behavioral": 0.20}
 
     def solve(self, challenge: Dict[str, Any]) -> Dict[str, Any]:
-        def signal_on(key: str) -> float:
+        def is_signal_present(key: str) -> float:
+            if key == "visual":
+                return 1.0 if challenge.get("visual") or challenge.get("image") else 0.0
             return 1.0 if challenge.get(key) else 0.0
 
-        signals = {name: signal_on(challenge_key) for name, challenge_key in self.SIGNAL_KEY_MAP.items()}
+        signals = {name: is_signal_present(challenge_key) for name, challenge_key in self.SIGNAL_KEY_MAP.items()}
         effective_weights = {name: max(0.0, weight) for name, weight in self.ensemble_weights.items()}
         total_weight = sum(effective_weights.values())
         if total_weight <= 0.0:

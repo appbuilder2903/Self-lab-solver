@@ -15,7 +15,7 @@ class AdvancedAutomationTests(unittest.TestCase):
         system = UltraAdvancedAutomationSystem()
         result = system.execute(
             tasks=["scrape", "analyze", "report"],
-            challenge={"audio": "clip", "image": "frame", "interaction": {"speed": 1.1}},
+            challenge={"audio": "clip", "visual": "frame", "interaction": {"speed": 1.1}},
         )
         self.assertIn("scheduled_tasks", result)
         self.assertIn("behavior_pattern", result)
@@ -25,7 +25,7 @@ class AdvancedAutomationTests(unittest.TestCase):
     def test_captcha_solver_normalizes_non_unit_weights(self) -> None:
         solver = AdvancedCaptchaSolver()
         solver.ensemble_weights = {"audio": 3.0, "visual": 2.0, "behavioral": 5.0}
-        result = solver.solve({"audio": "clip", "image": "frame"})
+        result = solver.solve({"audio": "clip", "visual": "frame"})
         self.assertLessEqual(result["confidence"], 1.0)
         self.assertAlmostEqual(result["score"], 0.5)
 
