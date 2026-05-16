@@ -27,12 +27,20 @@ Windows activation equivalents:
 
 ### API Key Configuration
 
-Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments. If you use `.env`, ensure your runtime loads it before launching the script.
+Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments.
 
 ```bash
 read -s -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
 echo
 export OPENAI_API_KEY
+```
+
+If you use a local `.env` file, load it before running the script:
+
+```bash
+set -a
+source .env
+set +a
 ```
 
 ### Main Execution Script
@@ -59,7 +67,7 @@ If you have added a dashboard module, start it with your module entrypoint (for 
 
 ### Performance Optimization Tips
 
-- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance.
+- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance (installation guide: https://docs.nvidia.com/cuda/).
 - **Memory Management:** Adjust batch sizes based on your GPU memory.
 - **Parallel Processing:** Increase the number of processors based on your system resources.
 - **Model Caching:** Pre-download models to avoid delays during execution.
