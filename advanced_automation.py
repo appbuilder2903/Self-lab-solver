@@ -55,12 +55,15 @@ class AdvancedCaptchaSolver:
         return {"audio": 0.34, "visual": 0.46, "behavioral": 0.20}
 
     def solve(self, challenge: Dict[str, Any]) -> Dict[str, Any]:
-        def is_signal_present(key: str) -> float:
-            if key == "visual":
+        def is_signal_present(signal_name: str, challenge_key: str) -> float:
+            if signal_name == "visual":
                 return 1.0 if challenge.get("visual") or challenge.get("image") else 0.0
-            return 1.0 if challenge.get(key) else 0.0
+            return 1.0 if challenge.get(challenge_key) else 0.0
 
-        signals = {name: is_signal_present(challenge_key) for name, challenge_key in self.SIGNAL_KEY_MAP.items()}
+        signals = {
+            signal_name: is_signal_present(signal_name, challenge_key)
+            for signal_name, challenge_key in self.SIGNAL_KEY_MAP.items()
+        }
         effective_weights = {name: max(0.0, weight) for name, weight in self.ensemble_weights.items()}
         total_weight = sum(effective_weights.values())
         if total_weight <= 0.0:
