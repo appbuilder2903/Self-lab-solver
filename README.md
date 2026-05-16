@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ### API Key Configuration
 
-Export any required API keys as environment variables before execution:
+Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments:
 
 ```bash
 export OPENAI_API_KEY="your_api_key_here"
@@ -81,7 +81,7 @@ The NLP model breaks this down into:
 The system translates this into:
 1. Open Cloud Shell.
 2. Run:
-   `bq query --uselegacysql=false 'SELECT word, sum(wordcount) as count FROM \`bigquery-public-data.samples.shakespeare\` GROUP BY word ORDER BY count DESC LIMIT 10'`
+   `bq query --use_legacy_sql=false 'SELECT word, sum(wordcount) as count FROM \`bigquery-public-data.samples.shakespeare\` GROUP BY word ORDER BY count DESC LIMIT 10'`
 3. Execute and collect output.
 
 > "Deploy the container from 'gcr.io/cloud-samples-images/cv-api' to Cloud Run with 1000 max instances."
