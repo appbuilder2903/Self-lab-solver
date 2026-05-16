@@ -53,13 +53,19 @@ class AdvancedCaptchaSolver:
         return {"audio": 0.34, "visual": 0.46, "behavioral": 0.20}
 
     def solve(self, challenge: Dict[str, Any]) -> Dict[str, Any]:
+        def signal_on(key: str) -> float:
+            return 1.0 if challenge.get(key) else 0.0
+
         signals = {
-            "audio": float(bool(challenge.get("audio"))),
-            "visual": float(bool(challenge.get("image"))),
-            "behavioral": float(bool(challenge.get("interaction"))),
+            "audio": signal_on("audio"),
+            "visual": signal_on("image"),
+            "behavioral": signal_on("interaction"),
         }
-        score = sum(signals[name] * weight for name, weight in self.ensemble_weights.items())
-        return {"score": score, "confidence": min(1.0, score)}
+        total_weight = sum(max(0.0, weight) for weight in self.ensemble_weights.values())
+        if total_weight <= 0.0:
+            total_weight = 1.0
+        score = sum(signals[name] * max(0.0, weight) for name, weight in self.ensemble_weights.items()) / total_weight
+        return {"score": score, "confidence": score}
 
 
 @dataclass
