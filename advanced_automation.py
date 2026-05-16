@@ -61,10 +61,11 @@ class AdvancedCaptchaSolver:
             "visual": signal_on("image"),
             "behavioral": signal_on("interaction"),
         }
-        total_weight = sum(max(0.0, weight) for weight in self.ensemble_weights.values())
+        effective_weights = {name: max(0.0, weight) for name, weight in self.ensemble_weights.items()}
+        total_weight = sum(effective_weights.values())
         if total_weight <= 0.0:
             total_weight = 1.0
-        score = sum(signals[name] * max(0.0, weight) for name, weight in self.ensemble_weights.items()) / total_weight
+        score = sum(signals[name] * weight for name, weight in effective_weights.items()) / total_weight
         return {"score": score, "confidence": score}
 
 
