@@ -67,7 +67,7 @@ If you have added a dashboard module, start it with your module entrypoint (for 
 
 ### Performance Optimization Tips
 
-- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance (installation guide: https://docs.nvidia.com/cuda/).
+- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance (Linux guide: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/, Windows guide: https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/).
 - **Memory Management:** Adjust batch sizes based on your GPU memory.
 - **Parallel Processing:** Increase the number of processors based on your system resources.
 - **Model Caching:** Pre-download models to avoid delays during execution.
@@ -110,7 +110,7 @@ This becomes:
 4. Set max instances to **1000**.
 5. Deploy.
 
-This instruction-based capability bridges the gap between pre-trained knowledge and new situations. It does not need to have seen the exact lab before; it needs to parse and translate your instructions into the correct sequence of actions.
+This instruction-based capability bridges the gap between pre-trained knowledge and new situations. It does not need to have seen the exact lab before. It only needs to parse and translate your instructions into the correct sequence of actions.
 
 ### Refined Conclusion
 
