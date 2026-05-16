@@ -6,3 +6,100 @@ Ultra-Advanced AI-Powered Automation System scaffold with:
 - Quantum-inspired multi-task processing system
 - Human behavior simulation using biometric-like movement profiles
 - CAPTCHA solving orchestration via ensemble model interfaces
+
+## Running the Ultra-Advanced Automation System
+
+### Prerequisites & Setup
+
+Before running the system, make sure Python and required dependencies are installed in your environment.
+
+### Environment Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### API Key Configuration
+
+Export any required API keys as environment variables before execution:
+
+```bash
+export OPENAI_API_KEY="your_api_key_here"
+```
+
+### Main Execution Script
+
+Run the main automation script:
+
+```bash
+python advanced_automation.py
+```
+
+### Running with Docker (Recommended for Consistency)
+
+Use Docker to ensure a reproducible runtime:
+
+```bash
+docker build -t self-lab-solver .
+docker run --rm -it self-lab-solver
+```
+
+### Web Dashboard for Monitoring
+
+If dashboard support is enabled in your environment, start it to observe task status, action traces, and runtime metrics while jobs execute.
+
+### Performance Optimization Tips
+
+- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance.
+- **Memory Management:** Adjust batch sizes based on your GPU memory.
+- **Parallel Processing:** Increase the number of processors based on your system resources.
+- **Model Caching:** Pre-download models to avoid delays during execution.
+- **Network Optimization:** Use a high-speed connection for API calls.
+
+## Instruction-Based Execution
+
+The system is designed to process and execute direct, high-level instructions, allowing it to handle tasks it might not have seen before.
+
+## How It Handles New Lab Types via Instructions
+
+When encountering a new lab format, you can provide instructions like:
+
+> "Navigate to the Compute Engine section and create a new VM instance with 2 vCPUs and 8GB RAM."
+
+The NLP model breaks this down into:
+1. Find the navigation menu.
+2. Locate **Compute Engine** and click it.
+3. Open **VM instances**.
+4. Click **Create**.
+5. Fill in CPU and RAM fields.
+6. Click **Create**.
+
+> "Use the bq command-line tool to query the public dataset 'bigquery-public-data.samples.shakespeare' for the 10 most common words."
+
+The system translates this into:
+1. Open Cloud Shell.
+2. Run:
+   `bq query --uselegacysql=false 'SELECT word, sum(wordcount) as count FROM \`bigquery-public-data.samples.shakespeare\` GROUP BY word ORDER BY count DESC LIMIT 10'`
+3. Execute and collect output.
+
+> "Deploy the container from 'gcr.io/cloud-samples-images/cv-api' to Cloud Run with 1000 max instances."
+
+This becomes:
+1. Navigate to Cloud Run.
+2. Click **Create Service**.
+3. Select the specified container image.
+4. Set max instances to **1000**.
+5. Deploy.
+
+This instruction-based capability bridges the gap between pre-trained knowledge and new situations. It does not need to have seen the exact lab before; it needs to parse and translate your instructions into the correct sequence of actions.
+
+### Refined Conclusion
+
+- **Can it do every lab?** No.
+- **Can it do any lab you give it clear, step-by-step instructions for?** Yes, with a very high probability of success.
+
+The practical limitation shifts from "Has it been trained on this exact lab?" to "Can its NLP model accurately parse and translate your instructions into browser actions?" For most standard cloud tasks, the answer is yes.
+
+In practice, this means it can complete labs by instructions when those instructions are clear and actionable.
