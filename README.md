@@ -21,12 +21,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Windows activation equivalents:
+- Command Prompt: `.venv\Scripts\activate`
+- PowerShell: `.venv\Scripts\Activate.ps1`
+
 ### API Key Configuration
 
-Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments:
+Export any required API keys as environment variables before execution. Do not commit secrets to the repository; prefer a local `.env` file (excluded via `.gitignore`) or a secrets manager in shared environments.
 
 ```bash
-export OPENAI_API_KEY="your_api_key_here"
+read -s OPENAI_API_KEY
+export OPENAI_API_KEY
 ```
 
 ### Main Execution Script
@@ -48,7 +53,7 @@ docker run --rm -it self-lab-solver
 
 ### Web Dashboard for Monitoring
 
-If dashboard support is enabled in your environment, start it to observe task status, action traces, and runtime metrics while jobs execute.
+This scaffold does not include a built-in dashboard launcher by default. If you have added a dashboard module, start it with your module entrypoint (for example, `python dashboard.py`) and open the local URL shown in logs to monitor task status and runtime metrics.
 
 ### Performance Optimization Tips
 
