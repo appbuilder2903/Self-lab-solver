@@ -25,9 +25,9 @@ class AdvancedAutomationTests(unittest.TestCase):
     def test_captcha_solver_normalizes_non_unit_weights(self) -> None:
         solver = AdvancedCaptchaSolver()
         solver.ensemble_weights = {"audio": 3.0, "visual": 2.0, "behavioral": 5.0}
-        result = solver.solve({"audio": "clip", "image": "frame", "interaction": {"speed": 1.1}})
+        result = solver.solve({"audio": "clip", "image": "frame"})
         self.assertLessEqual(result["confidence"], 1.0)
-        self.assertAlmostEqual(result["score"], 1.0)
+        self.assertAlmostEqual(result["score"], 0.5)
 
 
 if __name__ == "__main__":
