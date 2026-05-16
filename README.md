@@ -67,7 +67,7 @@ If you have added a dashboard module, start it with your module entrypoint (for 
 
 ### Performance Optimization Tips
 
-- **GPU Utilization:** Ensure CUDA is properly installed for maximum performance (Linux guide: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/, Windows guide: https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/).
+- **GPU Utilization:** If you are using a CUDA-capable GPU, install CUDA to maximize performance (Linux guide: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/, Windows guide: https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/).
 - **Memory Management:** Adjust batch sizes based on your GPU memory.
 - **Parallel Processing:** Increase the number of processors based on your system resources.
 - **Model Caching:** Pre-download models to avoid delays during execution.
